@@ -1,17 +1,17 @@
 ; NCL script to plot ice loss vs Gt Carbon emitted (like fig 2 from Winkelmann) 
-; originally created 10/5/15, updated 10/5/15
+; originally created 10/5/15, updated 10/19/5
 
 wks = gsn_open_wks ("pdf","IceLoss_CEmissions")		;type of plot (can change x11 to pdf) and file name 
 res = True
 path = "/Users/lvargo/cosim1/lvargo/GIS_tsi/tsi_for_lauren/"	; path of where the files are
 
 ; Years to plot
-Yr1 = 2500
-Yr2 = 3500
-Yr3 = 4500
-Yr4 = 5500
-Yr5 = 6500
-Yr6 = 7500
+Yr1 = 2800
+Yr2 = 3800
+Yr3 = 4800
+Yr4 = 5800
+Yr5 = 6800
+Yr6 = 7800
 
 ; loop to calculate GtC
 GtC = new(200,float)		; array to store values of totC 
@@ -94,9 +94,10 @@ res@vpWidthF = 0.7					; width of plot
 res@vpHeightF = 0.4					; height of plot
 res@trYMaxF = 103					; Y axis maximum 
 res@trXMaxF = 5100					; X axis maximum
-res@trXMinF = 325					; X axis minimum
+res@trXMinF = 350					; X axis minimum
 res@xyDashPattern = 0					; make all lines solid 
 cMap = "GMT_drywet"
+;res@trXLog = True
 LY = ispan(1850,7500,1000)
 LY1 = get_color_rgba(cMap,LY,Yr1)
 LY2 = get_color_rgba(cMap,LY,Yr2)  

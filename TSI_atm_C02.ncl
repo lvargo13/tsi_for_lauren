@@ -1,7 +1,7 @@
-; NCL script to plot tsi of C emissions (F_co2emit is actually C) 
-; originally created 9/30/15, updated 10/19/15
+; NCL script to plot tsi of atm CO2 (A_co2) 
+; originally created 10/19/15, updated 10/19/15
 
-wks = gsn_open_wks ("pdf","C_emissions")      ; plot type (can be "x11" or "pdf") and file name
+wks = gsn_open_wks ("x11","CO2_timeseries")      ; plot type (can be "x11" or "pdf") and file name
 color_map = "hotres"
 gsn_define_colormap (wks,color_map)     ; colormap being used
 cmap = gsn_retrieve_colormap(wks)
@@ -32,12 +32,12 @@ lbClev = ispan(350,5050,20)     ; span from min to max C emitted values for colo
         i = 1
         h = addfile(path+sprinti("%0.3i",i)+"/Concat_"+sprinti("%0.3i",i)+".nc","r")
         Year = h->T_year                        ; read in year
-	C = h->F_co2emit                        ; read in Carbon  
-	C := C * 3.154E7 * 1E-12
+	C = h->A_co2                        ; read in Carbon  
         res@trXMinF = 1750                      ; plot X axis min
-	res@trXMaxF = 2500                      ; plot X axis max 
-        res@trYMaxF = 25                       ; plot Y axis max
-	res@tiYAxisString = "Carbon Emissions (GtC/yr)"    ; plot Y axis label
+	res@trXMaxF = 8000                      ; plot X axis max 
+        res@trYMaxF = 1600                      ; plot Y axis max
+        res@trYMinF = 250
+	res@tiYAxisString = "Atmospheric CO2 (ppm)"    ; plot Y axis label
         res@tiXAxisString = "Year"    ; plot X axis label
 	res@gsnDraw = False                     ; don't draw plot yet
         res@gsnFrame = False                    ; don't make plot yet
@@ -48,8 +48,7 @@ delete(i)
 ; loop to plot the additional time series
 do i = 2,199
         g = addfile(path+sprinti("%0.3i",i)+"/Concat_"+sprinti("%0.3i",i)+".nc","r")
-        C1 = g->F_co2emit                       ; read in Carbon 
-	C1 := C1 * 3.154E7 * 1E-12
+        C1 = g->A_co2                       ; read in Carbon 
 	Year1 = g->T_year                       ; read in year
         res@xyLineColors = get_color_index(color_map,lbClev,Clev(i-1))
         plot1 = gsn_csm_xy (wks,Year1,C1,res)
@@ -61,8 +60,7 @@ delete(i)
 ; plot the last time series, and draw the final plot
         i = 200
         j = addfile(path+sprinti("%0.3i",i)+"/Concat_"+sprinti("%0.3i",i)+".nc","r")
-        C2 = j->F_co2emit                       ; read in Carbon 
-	C2 := C2 * 3.154E7 * 1E-12
+        C2 = j->A_co2                       ; read in Carbon 
 	Year2 = j->T_year                       ; read in year
         res@xyLineColors = get_color_index(color_map,lbClev,Clev(i-1))
         plot2 = gsn_csm_xy (wks,Year2,C2,res)

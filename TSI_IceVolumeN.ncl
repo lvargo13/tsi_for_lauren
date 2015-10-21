@@ -1,5 +1,5 @@
 ; NCL script to plot tsi of ice volume 
-; originally created 9/29/15, updated 10/14/15
+; originally created 9/29/15, updated 10/19/15
 
 wks = gsn_open_wks ("pdf","IceVolume_tsi")	; plot type (can be "x11" or "pdf") and file name
 color_map = "hotres"
@@ -25,7 +25,7 @@ ClevMax = max(Clev)			; maximum C emitted value
 ClevMax := floattointeger(ClevMax)
 ClevMin = min(Clev)			; minimum C emitted value
 ClevMin := floattointeger(ClevMin)
-lbClev = ispan(350,5050,19) 	; span from min to max C emitted values for coloring 
+lbClev = ispan(350,5050,20) 	; span from min to max C emitted values for coloring 
 ; lbClev = fspan(ClevMin,ClevMax,256)
 
 ; plot the first time series
@@ -36,6 +36,7 @@ lbClev = ispan(350,5050,19) 	; span from min to max C emitted values for colorin
 	res@trXMinF = 1750			; plot X axis min 
 	res@trYMaxF = 105			; plot Y axis max
 	res@tiYAxisString = "% of Initial Ice Sheet"	; plot Y axis label
+	res@tiXAxisString = "Year"
 	res@gsnDraw = False			; don't draw plot yet
 	res@gsnFrame = False			; don't make plot yet
 	res@xyLineColors = get_color_index(color_map,lbClev,Clev(i-1))	; color the lines based on c emissions value
@@ -73,9 +74,9 @@ delete(i)
   res_lb@lbPerimOn          = False            ; turn off box around label bar
   res_lb@lbFillColors       = cmap(2:,:)       ; label bar colors
   res_lb@lbMonoFillPattern  = True             ; fill label bar solid
-  res_lb@lbLabelFontHeightF = 0.013            ; label font height
-  res_lb@lbTitleString      = "Gt Carbon Emitted"         ; title
-  res_lb@lbTitleFontHeightF = 0.012           		  ; title font height
+  res_lb@lbLabelFontHeightF = 0.016            ; label font height
+  res_lb@lbTitleString      = "Gt Carbon"         ; title
+  res_lb@lbTitleFontHeightF = 0.022           		  ; title font height
   res_lb@lbBoxLinesOn = False			; no boxes on each color
   gsn_labelbar_ndc (wks,dimsizes(lbClev),""+lbClev,0.82,0.8,res_lb)  
 
