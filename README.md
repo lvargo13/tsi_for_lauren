@@ -8,24 +8,24 @@ Bash script that loops through 200 directories, and within each directory concat
 Concat_all.sh
 
 Time series plots:
-** All time series plots are colored based on cumulative carbon emissions
-*** All 5 plots put into 1 panel- Fig 1?
--TSI_CEmissions.ncl (plots C emissions)
--TSI_atm_CO2.ncl (plots atmospheric CO2)
--TSI_Temp.ncl (plots dT)
--TSI_SMB.ncl (plots SMB)
--TSI_IceVolumeN.ncl (plots NH ice volume)
+  ** All time series plots are colored based on cumulative carbon emissions
+  *** All 5 plots put into 1 panel- Fig 1?
+  -TSI_CEmissions.ncl (plots C emissions)
+  -TSI_atm_CO2.ncl (plots atmospheric CO2)  
+  -TSI_Temp.ncl (plots dT)
+  -TSI_SMB.ncl (plots SMB)
+  -TSI_IceVolumeN.ncl (plots NH ice volume)
 
 Histogram plot:
--IceV_histo_manual.ncl - plots a histogram of final timestep ice volume,
+  -IceV_histo_manual.ncl - plots a histogram of final timestep ice volume,
 
 Plot of ice volume vs. GtC (similar idea to Fig 2 from Winkelmann et al., 2015)
--IceLoss_vs_CEmissions.ncl
+  -IceLoss_vs_CEmissions.ncl
 
 Wind Speed plot:
-** Plots wind vectors for 1)full topography of GrIS 2)no topography of GrIS and 3)difference
--WindSpeedPlot.ncl
+  ** Plots wind vectors for 1)full topography of GrIS 2)no topography of GrIS and 3)difference
+  -WindSpeedPlot.ncl
 
 Also wrote script to plot a scatter plot of ice volume vs. (max C or rate of C)
--MaxCarbon_scat.ncl
-** Could not get the scatter plot to colorcode dots to correspond to cumulate C emissions
+  -MaxCarbon_scat.ncl
+  ** Could not get the scatter plot to colorcode dots to correspond to cumulate C emissions
